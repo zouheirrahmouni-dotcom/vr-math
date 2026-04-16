@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Comparaison Pyramides - Siliana VR</title>
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+    <script>
+      // Système d'interaction simple à la souris
+      AFRAME.registerComponent('info-clic', {
+        schema: {texte: {type: 'string'}},
+        init: function () {
+          var el = this.el;
+          var data = this.data;
+          el.addEventListener('click', function () {
+            alert(data.texte); // Affiche l'information mathématique
+          });
+        }
+      });
+    </script>
+  </head>
+  <body>
+    <a-scene cursor="rayOrigin: mouse">
+      
+      <a-sky color="#ECECEC"></a-sky>
+      <a-grid position="0 0 0" cell-size="2" color="#999"></a-grid>
+
+      <a-entity position="0 0 0" animation="property: rotation; to: 0 360 0; loop: true; dur: 30000; easing: linear">
+        <a-camera position="0 3 9" look-controls>
+          <a-cursor color="yellow" radius-inner="0.02" radius-outer="0.03"></a-cursor>
+        </a-camera>
+      </a-entity>
+
+      <a-entity position="-4 0 0">
+        <a-cone radius-bottom="2" height="3" segments-radial="3" 
+                color="#4CC3D9" opacity="0.5" wireframe="false"
+                info-clic="texte: Pyramide régulière à base triangulaire">
+        </a-cone>
+
+        <a-entity line="start: 0 -1.5 0; end: 0 1.5 0; color: red"></a-entity>
+        <a-text value="h" position="0.2 0 0" color="red" width="4"></a-text>
+
+        <a-ring color="#333" radius-inner="1.99" radius-outer="2" segments-theta="3" rotation="-90 0 0" position="0 -1.49 0"></a-ring>
+
+        <a-ring color="blue" radius-inner="1.15" radius-outer="1.16" segments-theta="64" rotation="-90 0 0" position="0 -1.48 0"></a-ring>
+        
+        <a-entity line="start: 0 -1.48 0; end: 1 -1.48 -0.57; color: blue"></a-entity>
+        <a-text value="R" position="0.5 -1.2 0.1" color="blue" width="3"></a-text>
+
+        <a-entity line="start: 0 1.5 0; end: 2 -1.5 0; color: green"></a-entity>
+        <a-text value="L = sqrt(h2 + R2)" position="1 0.5 0" rotation="0 0 -56" color="green" width="3"></a-text>
+        
+        <a-text value="Base Triangulaire" position="-1.5 3.5 0" color="#333" width="5"></a-text>
+      </a-entity>
+
+      <a-entity position="4 0 0">
+        <a-cone radius-bottom="2" height="3" segments-radial="4" 
+                color="#FFC65D" opacity="0.5" wireframe="false"
+                rotation="0 45 0"
+                info-clic="texte: Pyramide régulière à base carrée">
+        </a-cone>
+
+        <a-entity line="start: 0 -1.5 0; end: 0 1.5 0; color: red"></a-entity>
+        <a-text value="h" position="0.2 0 0" color="red" width="4"></a-text>
+
+        <a-ring color="#333" radius-inner="1.99" radius-outer="2" segments-theta="4" rotation="-90 45 0" position="0 -1.49 0"></a-ring>
+
+        <a-ring color="blue" radius-inner="1.41" radius-outer="1.42" segments-theta="64" rotation="-90 0 0" position="0 -1.48 0"></a-ring>
+        
+        <a-entity line="start: 0 -1.48 0; end: 1 -1.48 1; color: blue"></a-entity>
+        <a-text value="R" position="0.5 -1.2 0.5" color="blue" width="3"></a-text>
+
+        <a-entity line="start: 0 1.5 0; end: 1.41 -1.5 1.41; color: green"></a-entity>
+        <a-text value="L = sqrt(h2 + R2)" position="0.8 0.5 0.8" rotation="0 -45 -50" color="green" width="3"></a-text>
+
+        <a-text value="Base Carree" position="-1 3.5 0" color="#333" width="5"></a-text>
+      </a-entity>
+
+      <a-light type="ambient" color="#fff"></a-light>
+      
+    </a-scene>
+  </body>
+</html>
